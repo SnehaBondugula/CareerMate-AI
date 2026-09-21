@@ -5,7 +5,7 @@ import { pipe, type TranscriptionChunk } from "@screenpipe/browser";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useSettings } from "@/lib/settings-provider";
-import { useMetrics } from "@/context/MetricsContext";
+import { useMetrics } from "@/context/coach/MetricsContext";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import OpenAI from "openai";
@@ -33,7 +33,14 @@ export function RealtimeAudio({
 
   const [isResponding, setIsResponding] = useState<boolean>(false);
 
-  const { metrics } = useMetrics();
+  const {
+    handDetectionCounter,
+    handDetectionDuration,
+    notFacingCounter,
+    notFacingDuration,
+    badPostureDetectionCounter,
+    badPostureDuration,
+  } = useMetrics();
 
   // Update ref when history changes
   useEffect(() => {
@@ -221,7 +228,13 @@ export function RealtimeAudio({
           { role: "user", content: `Conversation History: ${history}` },
           {
             role: "user",
-            content: `Interview Body Language Results: ${metrics}`,
+            content: `Interview Body Language Results:
+              Hand Detection Counter: ${handDetectionCounter}
+              Hand Detection Duration: ${handDetectionDuration}
+              Not Facing Counter: ${notFacingCounter}
+              Not Facing Duration: ${notFacingDuration}
+              Bad Posture Detection Counter: ${badPostureDetectionCounter}
+              Bad Posture Duration: ${badPostureDuration}`,
           },
         ],
         store: true,

@@ -1,4 +1,4 @@
-import Camera from "@/components/coach/camera/Camera";
+import Camera from "@/components/coach/Camera/Camera";
 
 export default function TestPage() {
   return (
