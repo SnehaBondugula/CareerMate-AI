@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, ReactNode } from "react";
-import { usePipeSettings } from "@/lib/hooks/use-pipe-settings";
+import { usePipeSettings } from "@/lib/coach/hooks/use-pipe-settings";
 
 // Create a context for settings
 type SettingsContextType = ReturnType<typeof usePipeSettings>;
